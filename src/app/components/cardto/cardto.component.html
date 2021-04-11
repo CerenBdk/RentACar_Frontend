@@ -1,0 +1,99 @@
+<div class="row" style="margin-top: 100px;">
+  <div class="col-md-6">
+    <div
+      id="carouselExampleControls"
+      style="
+        width: 70%;
+        height: auto;
+        padding-right: 0px;
+        border: none;
+        float: right;"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner" style="margin-right: 0px">
+        <div
+          class="carousel-item"
+          *ngFor="let image of carImages; index as i; first as firstImage"
+          [ngClass]="{ active: firstImage }"
+        >
+          <img
+            [src]="getImagePath(image.imagePath)"
+            class="d-block w-100"
+            [alt]="getImagePath(image.imagePath)"
+            style="
+              margin-right: 0px;
+              padding-right: 0px;
+            "
+          />
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="card bg-light col-md-4 mb-3">
+    <ul *ngIf="carDtos" class="list-group list-group-flush" style="margin-top: 20px;">
+      <li class="list-group-item">Brand Name: {{ carDtos.brandName }}</li>
+      <li class="list-group-item">Color Name: {{ carDtos.colorName }}</li>
+      <li class="list-group-item">Model Year: {{ carDtos.modelYear }}</li>
+      <li class="list-group-item">Daily Price: {{ carDtos.dailyPrice }}</li>
+      <li class="list-group-item">Is Rented: {{ carDtos.isRented }}</li>
+      <li class="list-group-item">Min Findeks: {{ carDtos.minFindeks }}</li>
+    </ul>
+
+    <div class="btn-goback" style="margin: 30px 0 30px 0; float: right;">
+      <button
+        *ngIf="isCustomer"
+        type="button"
+        class="btn btn-xs btn-success"
+        style="width: 100px; margin-right: 10px"
+        (click)="getRentalPage(carDtos.isRented)"
+      >
+        Rent
+      </button>
+      <button
+        routerLink="/cars"
+        type="button"
+        class="btn btn-xs btn-primary"
+        style="width: 100px; margin-right: 10px"
+      >
+        Go Back
+      </button>
+      <!-- <button
+        *ngIf="claim === 'admin'"
+        routerLink="/cars/update/{{ carDtos?.carID }}"
+        type="button"
+        class="btn btn-xs btn-primary"
+        style="width: 100px; margin-right: 10px"
+      >
+        Update
+      </button> -->
+      <app-car-update *ngIf="claim === 'admin'"></app-car-update>
+    </div>
+    <div class="d-grid gap-2 mb-2" *ngIf="isRented == false">
+      <app-rental [carforrental]="carDtos"></app-rental>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center" style="margin-top: 30px;">
+  <div class="col-md-7" style="float: inline-end;">
+  <div class="card text-center">
+    <div class="card-header" style="font-size: 20px; font-weight: 700;">
+      Features
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ carDtos?.carName }}</h5>
+      <p class="card-text">{{ carDtos?.description }}</p>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</div>
+</div>

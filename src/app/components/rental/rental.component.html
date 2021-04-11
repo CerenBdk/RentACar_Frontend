@@ -1,0 +1,41 @@
+<div *ngIf="findeks == true">
+  <div class="diveder" style="border: 1px solid grey; margin-top: 40px"></div>
+
+  <div
+    *ngIf="findeks == true"
+    class="col-md-12"
+    style="margin-bottom: 100px; margin-top: 50px"
+  >
+    <div class="form-row">
+      <form [formGroup]="rentalAddForm">
+        <div class="col-md-12 mb-3">
+          <label for="validationCustom01">Rent Date</label>
+          <input
+            formControlName="rentDate"
+            class="form-control"
+            type="datetime-local"
+            value=""
+            id="rent_date"
+            required
+          />
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="validationCustom02">Return Date</label>
+          <input
+            formControlName="returnDate"
+            class="form-control"
+            type="datetime-local"
+            value=""
+            id="return_date"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="form-row" style="float: right; margin-top: 20px">
+      <button type="button" class="btn btn-success" (click)="createRent()">
+        Confirm Rent
+      </button>
+      <app-payment *ngIf="isRented" [rentForPayment]="rental"></app-payment>
+    </div>
+  </div>
+</div>

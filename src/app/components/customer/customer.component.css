@@ -1,0 +1,13 @@
+.list-group-item
+{
+    padding: .3rem 5rem;
+    font-weight: 400;
+}
+h4{
+    font-weight: 600;
+    text-align: center;
+}
+.list-group
+{
+    margin-top: 20px;
+}

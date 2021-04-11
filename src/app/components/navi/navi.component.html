@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
+  <a
+    class="navbar-brand"
+    style="border-right: 1px solid white; padding-right: 20px"
+    >Rent A Car</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div
+      class="navbar-nav mr-auto"
+      style="display: flex; flex-direction: row; justify-content: space-between"
+    >
+      <div class="nav-item active">
+        <a class="nav-link" routerLink="/cars"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </div>
+    </div>
+    <div class="form-inline my-2 my-lg-0" style="float: right">
+      <button
+        *ngIf="!isVerified"
+        class="btn btn-primary my-2 my-sm-0"
+        routerLink="/login"
+      >
+        Login
+      </button>
+      <button
+        *ngIf="!isVerified"
+        class="btn btn-primary my-2 my-sm-0"
+        routerLink="/register"
+        style="margin-left: 10px"
+      >
+        Register
+      </button>
+      <div *ngIf="isVerified">
+        <div class="nav-item dropdown" style="margin-right: 20px;">
+          <a
+            class="nav-link dropdown-toggle btn btn-primary"
+            data-toggle="dropdown"
+            role="button"
+            > <i class="bi bi-person-circle" style="color:white"></i>&nbsp; {{userName}} &nbsp; </a
+          >
+          <div class="dropdown-menu">
+            <button class="dropdown-item" routerLink="/profile">Profile</button>
+            <button *ngIf="claim === 'admin'" class="dropdown-item" routerLink="/admin">Admin Panel</button>
+            <button class="dropdown-item" routerLink="/login" (click)="logOut()">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+

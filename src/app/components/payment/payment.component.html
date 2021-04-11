@@ -1,0 +1,145 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModal"
+  style="margin-left: 10px"
+>
+  Go to Payment
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div *ngIf="haveCreditCard == true" class="form-group col-md-10">
+        <div class="modal-body">
+          <div style="margin: 20px 0 20px 0; width: 120%">
+            <label for="inputState">Credit Cards</label>
+            <select
+              aria-label="Default select example"
+              id="inputState"
+              class="form-control"
+              ngModel
+              (ngModelChange)="getSelectedCreditCard($event)"
+            >
+              <option *ngFor="let card of creditCards" [ngValue]="card">
+                {{ card.creditCardNumber }}
+              </option>
+            </select>
+          </div>
+          <div class="row" style="justify-content: end">
+            <div style="margin: 0 0 20px 20px">
+              <button
+                class="btn btn-success"
+                (click)="addNewCard()"
+                style="font-size: 16px"
+              >
+                <i class="bi bi-plus-circle" style="font-size: 16px"></i> Pay
+                with a different card
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form
+          *ngIf="haveCreditCard == false || isDifferent == true"
+          [formGroup]="PaymentForm"
+        >
+          <div class="form-row" style="margin: 0 20px 10px 20px;">
+            <label for="credit_card">Credit Card Number</label>
+            <input
+              [(ngModel)]="creditCard"
+              formControlName="creditCardNumber"
+              name="creditCardNumber"
+              type="text"
+              class="form-control"
+              id="credit_card"
+              required
+            />
+          </div>
+          <div class="form-row" style="margin: 0 20px 0 20px;">
+            <div class="col-md-6 mb-3">
+              <label for="expiration_date">Expiration Date</label>
+              <input
+                [(ngModel)]="expirationDate"
+                formControlName="expirationDate"
+                name="expirationDate"
+                type="text"
+                class="form-control"
+                id="expiration_date"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="security_code">Security Code</label>
+              <input
+                [(ngModel)]="securityCode"
+                formControlName="securityCode"
+                name="securityCode"
+                type="text"
+                class="form-control"
+                id="security_code"
+                required
+              />
+            </div>
+            <input type="hidden" id="price" formControlName="price" />
+            <input type="hidden" id="customerID" formControlName="customerID" />
+          </div>
+        </form>
+      </div>
+      <div
+        *ngIf="haveCreditCard == false || isDifferent == true"
+        class="col-md-12 mb-3"
+        style="margin: 0 20px 0 20px;"
+      >
+        <div class="form-group">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="gridCheck"
+              required
+              [(ngModel)]="saveCard"
+            />
+            <label class="form-check-label" for="gridCheck">
+              Do you save this credit card information?
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="addPayment()"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#carModalUpdate"
+>
+  Update
+</button>
+<div
+  class="modal fade"
+  id="carModalUpdate"
+  tabindex="-1"
+  aria-labelledby="carModalUpdateLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="carModalUpdate">Update Car</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="carUpdateForm">
+          <label for="carName"> Car Name</label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="carName"
+              formControlName="name"
+              class="form-control"
+              placeholder="{{ car?.carName }}"
+            />
+          </div>
+          <label for="brandSelect">Select Brand</label>
+          <div class="form-group">
+            <select
+              formControlName="brandID"
+              class="form-control"
+              id="brandSelect"
+              value=" {{ car?.brandName }}"
+            >
+              <option *ngFor="let brand of brands" [value]="brand.id">
+                {{ brand.name }}
+              </option>
+            </select>
+          </div>
+          <label for="colorSelect">Select Color</label>
+          <div class="form-group">
+            <select
+              formControlName="colorID"
+              class="form-control"
+              id="colorSelect"
+              value=" {{ car?.colorName }}"
+            >
+              <option *ngFor="let color of colors" [value]="color.id">
+                {{ color.name }}
+              </option>
+            </select>
+          </div>
+          <label for="modelYear">Model Year</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="modelYear"
+              formControlName="modelYear"
+              class="form-control"
+              placeholder="{{ car?.modelYear }}"
+            />
+          </div>
+          <label for="dailyPrice">Daily Price</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="dailyPrice"
+              formControlName="dailyPrice"
+              class="form-control"
+              placeholder="{{ car?.dailyPrice }}"
+            />
+          </div>
+          <label for="description">Description</label>
+          <div class="form-group">
+            <input
+              type="textarea"
+              id="description"
+              formControlName="description"
+              class="form-control"
+              placeholder="{{ car?.description }}"
+            />
+          </div>
+          <label for="findeks">Findeks</label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="findeks"
+              formControlName="findeks"
+              class="form-control"
+              placeholder="{{ car?.minFindeks }}"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="updateCar()"
+          data-dismiss="modal"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

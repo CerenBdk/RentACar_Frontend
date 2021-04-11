@@ -1,0 +1,23 @@
+<div class="form-row align-items-center">
+  <div class="col-md-12">
+    <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: 700;"> Brands </label>
+    <input
+    [(ngModel)]="filterBrandText"
+    type="text"
+    class="form-control"
+    id="filterBrandText"
+    style="margin-bottom: 10px;"
+    placeholder="Brand Search"
+  />
+    <select class="custom-select custom-select-md mb-3" id="inlineFormCustomSelect" style="width: 250px;">
+      <option
+        (click)="setCurrentBrand(brand)"
+        *ngFor="let brand of brands | filterBrand:filterBrandText"
+        [class]="getCurrentBrandClass(brand)"
+      >
+      {{ brand.name }}
+      </option>
+      <option [class]="getAllBrandClass()" routerLink="/cars">View All </option>
+    </select>
+  </div>
+</div>

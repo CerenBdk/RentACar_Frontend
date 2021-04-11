@@ -1,0 +1,26 @@
+
+<div class="form-row align-items-center" style="margin-top: 50px;">
+  <div class="col-md-12">
+    <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-weight: 700;"> Colors </label>
+    <input
+    [(ngModel)]="filterColorText"
+    type="text"
+    class="form-control"
+    id="filterColorText"
+    style="margin-bottom: 10px;"
+    placeholder="Color Search"
+  />
+    <select class="custom-select custom-select-md mb-3" id="inlineFormCustomSelect" style="width: 250px;">
+      <option
+        (click)="setCurrentColor(color)"
+        routerLink = "/cars/color/{{color.id}}"
+        [class]="getCurrentColorClass(color)"
+        *ngFor="let color of colors | filterColor:filterColorText"
+      >
+      {{ color.name }}
+      </option>
+      <option [class]="getAllColorClass()" routerLink = "/cars">View All </option>
+    </select>
+  </div>
+</div>
+

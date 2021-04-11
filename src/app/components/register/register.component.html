@@ -1,0 +1,58 @@
+<body class="text-center">
+    <form class="form-signin" [formGroup] = "registerForm">
+      <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+      </div>
+      <div class="form-label-group">
+        <input
+          formControlName ="firstName"
+          type="text"
+          id="firstName"
+          class="form-control"
+          placeholder="First Name"
+          required=""
+          autofocus=""
+        />
+        <label for="firstName">First Name</label>
+      </div>
+      <div class="form-label-group">
+        <input
+          formControlName ="lastName"
+          type="text"
+          id="lastName"
+          class="form-control"
+          placeholder="Last Name"
+          required=""
+          autofocus=""
+        />
+        <label for="lastName">Last Name</label>
+      </div>
+      <div class="form-label-group">
+        <input
+          formControlName ="email"
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          required=""
+          autofocus=""
+        />
+        <label for="inputEmail">Email address</label>
+      </div>
+      <div class="form-label-group">
+        <input
+          formControlName ="password"
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required=""
+        />
+        <label for="inputPassword">Password</label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" (click)="register()" routerLink="/login">
+        Register
+      </button>
+    </form>
+  </body>
+  

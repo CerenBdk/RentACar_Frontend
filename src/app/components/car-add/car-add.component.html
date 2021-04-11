@@ -1,0 +1,116 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#carAddModal"
+>
+  Add
+</button>
+
+<div
+  class="modal fade"
+  id="carAddModal"
+  tabindex="-1"
+  aria-labelledby="carAddModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add A New Car</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="carAddForm">
+            <label for="carName"> Car Name</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="carName"
+                formControlName="name"
+                class="form-control"
+                placeholder=" "
+              />
+            </div>
+            <label for="brandSelect">Select Brand</label>
+            <div class="form-group">
+              <select
+                formControlName="brandID"
+                class="form-control"
+                id="brandSelect"
+              >
+                <option *ngFor="let brand of brands" [value]="brand.id">
+                  {{ brand.name }}
+                </option>
+              </select>
+            </div>
+            <label for="colorSelect">Select Color</label>
+            <div class="form-group">
+              <select
+                formControlName="colorID"
+                class="form-control"
+                id="colorSelect"
+              >
+                <option *ngFor="let color of colors" [value]="color.id">
+                  {{ color.name }}
+                </option>
+              </select>
+            </div>
+            <label for="modelYear">Model Year</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+                placeholder=" "
+              />
+            </div>
+            <label for="dailyPrice">Daily Price</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+                placeholder="0.00"
+              />
+            </div>
+            <label for="description">Description</label>
+            <div class="form-group">
+              <input
+                type="textarea"
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder=" "
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div style="float: right">
+            <button class="btn btn-fill btn-primary"  data-dismiss="modal">
+              Close
+            </button>
+            <button
+              class="btn btn-fill btn-success"
+              (click)="addCar()"
+              style="margin-left: 10px"
+              data-dismiss="modal"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
